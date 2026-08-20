@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Hát Thiếu Nhi - Nu Na Nu Nống</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #ff4757;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            color: #747d8c;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Player YouTube */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Tỉ lệ 16:9 */
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Lời bài hát */
+        .lyrics-box {
+            background-color: #fff0f3;
+            border: 2px dashed #ff6b81;
+            border-radius: 12px;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .lyrics-box h3 {
+            color: #ff4757;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .lyrics-text {
+            color: #2f3542;
+            line-height: 1.8;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Trò chơi / Nút tương tác */
+        .game-btn {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+        }
+
+        .game-btn:hover {
+            background-color: #ff6b81;
+            transform: translateY(-2px);
+        }
+
+        .result-text {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2ed573;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Nu Na Nu Nống</h1>
+            <p>🎵 Bài Hát Đồng Dao Thiếu Nhi 🎵</p>
+        </div>
+
+        <!-- Trình phát Video Nhạc -->
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/K5V-HVgEpQg" 
+                title="Nu Na Nu Nống - Nhạc Thiếu Nhi" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Lời bài hát -->
+        <div class="lyrics-box">
+            <h3>📜 Lời Bài Hát</h3>
+            <div class="lyrics-text">
+                Nu na nu nống<br>
+                Đánh trống phất cờ<br>
+                Mở cuộc thi đua<br>
+                Thi chân đẹp đẽ<br>
+                Chân ai sạch sẽ<br>
+                Gót đỏ hồng hào<br>
+                Không bẩn tí nào<br>
+                Được vào đánh trống!
+            </div>
+        </div>
+
+        <!-- Tính năng đếm nhịp rụt chân -->
+        <button class="game-btn" onclick="playGame()">🎲 Đếm nhịp "Tay xòe chân rụt"</button>
+        <div class="result-text" id="gameResult"></div>
+    </div>
+
+    <script>
+        function playGame() {
+            const actions = [
+                "Chân trái rụt lại! 🦶",
+                "Chân phải rụt lại! 🦶",
+                "Gót đỏ hồng hào - Được vào đánh trống! 🥁",
+                "Chân chưa sạch - Ra ngoài rửa chân nào! 💦"
+            ];
+            const randomIndex = Math.floor(Math.random() * actions.length);
+            const resultElement = document.getElementById('gameResult');
+            
+            resultElement.style.opacity = 0;
+            setTimeout(() => {
+                resultElement.innerText = actions[randomIndex];
+                resultElement.style.opacity = 1;
+            }, 200);
+        }
+    </script>
+
+</body>
+</html>
