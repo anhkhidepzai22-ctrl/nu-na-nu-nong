@@ -1,0 +1,147 @@
+/* =========================================================
+   BÀI TẬP FLEXBOX & GRID: "MÓN NGON XỨ NGHỆ"
+   Họ tên: ........................  MSSV: ................
+
+   Màu sắc, font chữ và kiểu thẻ đã cho sẵn.
+   Sinh viên chỉ viết phần BỐ CỤC ở các chỗ có ghi "TODO".
+   ========================================================= */
+
+/* ---------- 0. RESET (cho sẵn, không sửa) ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2a1512;
+  background: #faf6ee;
+  line-height: 1.5;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+
+/* ---------- 1. HEADER — FLEXBOX ---------- */
+
+.header {
+  padding: 12px 40px;
+  background: #8B0000;
+
+  /* TODO 1.1: Dùng Flexbox để logo | menu | nút nằm trên MỘT hàng ngang.
+     - Logo sát trái, nút "Đặt bàn" sát phải, menu ở giữa.
+     - Ba phần tử căn giữa theo chiều dọc. */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo img {
+  height: 46px;
+  background: #faf3e0;
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+
+.menu {
+  /* TODO 1.2: Các mục menu xếp NGANG, cách nhau 28px. */
+  display: flex;
+  gap: 28px;
+}
+.menu a { color: #fff; font-weight: bold; padding-bottom: 4px; }
+.menu a:hover,
+.menu a.active { color: #C8A046; border-bottom: 2px solid #C8A046; }
+
+.btn {
+  background: #C8A046;
+  color: #2a1512;
+  font-weight: bold;
+  padding: 10px 22px;
+  border-radius: 999px;
+}
+
+
+/* ---------- 2. CONTENT — GRID ---------- */
+
+.content { max-width: 1100px; margin: 40px auto; padding: 0 16px; }
+.title { text-align: center; color: #8B0000; margin-bottom: 28px; }
+
+.dish-list {
+  /* TODO 2.1: Dùng Grid chia danh sách món thành 3 CỘT BẰNG NHAU,
+     khoảng cách giữa các ô là 24px. */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.dish:first-child {
+  /* TODO 2.2: Món đầu tiên là món nổi bật: chiếm 2 CỘT và 2 HÀNG. */
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.dish:first-child img { height: 520px; }
+.dish:first-child h3 { font-size: 1.6rem; }
+
+.dish {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
+  padding-bottom: 16px;
+}
+.dish img {
+  width: 100%;
+  height: 180px;
+  /* TODO 2.3: Thêm 1 thuộc tính để ảnh lấp đầy khung mà KHÔNG bị méo. */
+  object-fit: cover;
+}
+.dish h3 { margin: 12px 16px 4px; color: #8B0000; }
+.dish p  { margin: 0 16px 8px; color: #6b5a55; font-size: .95rem; }
+.price   { margin: 0 16px; font-weight: bold; }
+
+
+/* ---------- 3. FOOTER ---------- */
+.footer {
+  background: #2a1512;
+  color: #ddd;
+  padding: 20px;
+  /* TODO 3: Căn giữa dòng chữ bản quyền. */
+  text-align: center;
+}
+
+
+/* Dòng ghi nguồn ảnh ở footer (cho sẵn) */
+.credit { font-size: .8rem; opacity: .7; margin-top: 4px; }
+
+
+/* ---------- 4. RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+  /* TODO 4.1: Máy tính bảng → lưới món ăn còn 2 cột. */
+  .dish-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dish:first-child img { height: 300px; }
+}
+
+@media (max-width: 600px) {
+  /* TODO 4.2: Điện thoại
+     a) Header: đổi sang xếp DỌC, khoảng cách 12px, padding 12px 16px.
+     b) Lưới món ăn: còn 1 cột.
+     c) Món đầu tiên: bỏ chế độ nổi bật (trả về 1 ô như các món khác). */
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .dish-list {
+    grid-template-columns: 1fr;
+  }
+
+  .dish:first-child {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .menu { gap: 16px; }
+  .dish:first-child img { height: 200px; }
+}
